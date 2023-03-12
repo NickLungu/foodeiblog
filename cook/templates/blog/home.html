@@ -1,0 +1,298 @@
+{% extends 'index.html' %}
+{% load menu_tags social_tags %}
+
+{% block content %}
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__item">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 p-0">
+                            {% get_list_posts 0 1 as posts %}
+                            {% for post in posts %}
+                                <div class="hero__inside__item hero__inside__item--wide set-bg"
+                                    data-setbg="{{ post.image.url }}">
+                                    <div class="hero__inside__item__text">
+                                        <div class="hero__inside__item--meta">
+                                            <span>{{ post.create_date|date:"d" }}</span>
+                                            <p>{{ post.create_date|date:"M" }}</p>
+                                        </div>
+                                        <div class="hero__inside__item--text">
+                                            <ul class="label">
+                                                <li>{{ post.category.name }}</li>
+                                            </ul>
+                                            <h4>{{ post.title }}</h4>
+                                            <ul class="widget">
+                                                <li>by <span>{{ post.author }}</span></li>
+                                                <li>3 min read</li>
+                                                <li>{{ post.get_comments_number }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-3 col-md-6  p-0">
+                            {% get_list_posts 0 2 as posts %}
+                            {% for post in posts %}
+                                <div class="hero__inside__item hero__inside__item--small set-bg"
+                                    data-setbg="{{ post.image.url }}">
+                                    <div class="hero__inside__item__text">
+                                        <div class="hero__inside__item--meta">
+                                            <span>{{ post.create_date|date:"d" }}</span>
+                                            <p>{{ post.create_date|date:"M" }}</p>
+                                        </div>
+                                        <div class="hero__inside__item--text">
+                                            <ul class="label">
+                                                <li>{{ post.category.name }}</li>
+                                            </ul>
+                                            <h5>{{ post.title }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__item">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 p-0">
+                            {% get_list_posts 2 3 as posts %}
+                            {% for post in posts %}
+                                <div class="hero__inside__item hero__inside__item--wide set-bg"
+                                    data-setbg="{{ post.image.url }}">
+                                    <div class="hero__inside__item__text">
+                                        <div class="hero__inside__item--meta">
+                                            <span>{{ post.create_date|date:"d" }}</span>
+                                            <p>{{ post.create_date|date:"M" }}</p>
+                                        </div>
+                                        <div class="hero__inside__item--text">
+                                            <ul class="label">
+                                                <li>{{ post.category.name }}</li>
+                                            </ul>
+                                            <h4>{{ post.title }}</h4>
+                                            <ul class="widget">
+                                                <li>by <span>{{ post.author }}</span></li>
+                                                <li>3 min read</li>
+                                                <li>{{ post.get_comments_number }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-3 col-md-6  p-0">
+                            {% get_list_posts 2 4 as posts %}
+                            {% for post in posts %}
+                                <div class="hero__inside__item hero__inside__item--small set-bg"
+                                    data-setbg="{{ post.image.url }}">
+                                    <div class="hero__inside__item__text">
+                                        <div class="hero__inside__item--meta">
+                                            <span>{{ post.create_date|date:"d" }}</span>
+                                            <p>{{ post.create_date|date:"M" }}</p>
+                                        </div>
+                                        <div class="hero__inside__item--text">
+                                            <ul class="label">
+                                                <li>{{ post.category.name }}</li>
+                                            </ul>
+                                            <h5>{{ post.title }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Categories Section Begin -->
+    <section class="categories spad">
+        <div class="container">
+            <div class="row">
+                {% get_list_categories as list_categories %}
+                {% for category in list_categories %}
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="categories__item set-bg" data-setbg="{{category.image.url}}">
+                            <div class="categories__hover__text">
+                                <h5>{{ category.name }}</h5>
+                                <p>{{ category.q_count }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="categories__post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        {% for post in post_list %}
+                            {% if forloop.first %}
+                                <div class="categories__post__item categories__post__item--large">
+                                    <div class="categories__post__item__pic set-bg"
+                                        data-setbg="{{ post.image.url }}">
+                                        <div class="post__meta">
+                                            <h4>{{ post.create_date|date:"d" }}</h4>
+                                            <span>{{ post.create_date|date:"M" }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="categories__post__item__text">
+                                        <ul class="post__label--large">
+                                            <li>{{ post.category }}</li>
+                                        </ul>
+                                        <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                        <ul class="post__widget">
+                                            <li>by <span>{{ post.author }}</span></li>
+                                            <li>3 min read</li>
+                                            <li>{{ post.get_comments_number }}</li>
+                                        </ul>
+                                        <p>{{ post.text|truncatewords:50 }}</p>
+                                        <a href="{{ post.get_absolute_url }}" class="primary-btn">Read more</a>
+                                        <div class="post__social">
+                                            <span>Share</span>
+                                            <a href="#"><i class="fa fa-facebook"></i> <span>82</span></a>
+                                            <a href="#"><i class="fa fa-twitter"></i> <span>24</span></a>
+                                            <a href="#"><i class="fa fa-envelope-o"></i> <span>08</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                {% for post in post_list %}
+                                    {% if forloop.counter|divisibleby:2 %}
+                                        <div class="categories__post__item">
+                                            <div class="categories__post__item__pic small__item set-bg"
+                                                data-setbg="{{ post.image.url }}">
+                                                <div class="post__meta">
+                                                    <h4>{{ post.create_date|date:"d" }}</h4>
+                                                    <span>{{ post.create_date|date:"M" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="categories__post__item__text">
+                                                <span class="post__label">{{ post.category }}</span>
+                                                <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                                <ul class="post__widget">
+                                                    <li>by <span>{{ post.author }}</span></li>
+                                                    <li>3 min read</li>
+                                                    <li>{{ post.get_comments_number }}</li>
+                                                </ul>
+                                                <p>{{ post.text|truncatewords:50 }}</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                             <div class="col-lg-6 col-md-6 col-sm-6">
+                                {% for post in post_list %}
+                                    {% if not forloop.first and not forloop.counter|divisibleby:2 %}
+                                        <div class="categories__post__item">
+                                            <div class="categories__post__item__pic small__item set-bg"
+                                                data-setbg="{{ post.image.url }}">
+                                                <div class="post__meta">
+                                                    <h4>{{ post.create_date|date:"d" }}</h4>
+                                                    <span>{{ post.create_date|date:"M" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="categories__post__item__text">
+                                                <span class="post__label">{{ post.category }}</span>
+                                                <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                                <ul class="post__widget">
+                                                    <li>by <span>{{ post.author }}</span></li>
+                                                    <li>3 min read</li>
+                                                    <li>{{ post.get_comments_number }}</li>
+                                                </ul>
+                                                <p>{{ post.text|truncatewords:50 }}</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <div class="sidebar__item">
+                            <div class="sidebar__about__item">
+                                <div class="sidebar__item__title">
+                                    <h6>About me</h6>
+                                </div>
+                                {% get_about as about %}
+                                <img src="/static/img/sidebar/sidebar-about.jpg" alt="">
+                                <h6>Hi every one! I'm <span>{{ about.name }}</span></h6>
+                                <p>{{ about.description|truncatewords:50|safe }}</p>
+                                <a href="#" class="primary-btn">Read more</a>
+                            </div>
+                            <div class="sidebar__follow__item">
+                                <div class="sidebar__item__title">
+                                    <h6>Follow me</h6>
+                                </div>
+                                <div class="sidebar__item__follow__links">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-envelope-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="sidebar__feature__item">
+                                <div class="sidebar__item__title">
+                                    <h6>Feature Posts</h6>
+                                </div>
+                                <div class="sidebar__feature__item__list">
+                                    {% for post in post_list %}
+                                        {% if forloop.counter <= 5 %}
+                                            <div class="sidebar__feature__item__list__single">
+                                                <div class="post__meta">
+                                                    <h4>{{ post.create_date|date:"d" }}</h4>
+                                                    <span>{{ post.create_date|date:"M" }}</span>
+                                                </div>
+                                                <div class="post__text">
+                                                    <span>{{ post.category }}</span>
+                                                    <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="sidebar__item__banner">
+                                <img src="/static/img/logo.jpg" alt="">
+                            </div>
+                            <div class="sidebar__item__categories">
+                                <div class="sidebar__item__title">
+                                    <h6>Categories</h6>
+                                </div>
+                                <ul>
+                                    {% get_categories %}
+                                </ul>
+                            </div>
+                            <div class="sidebar__subscribe__item">
+                                <div class="sidebar__item__title">
+                                    <h6>Subscribe</h6>
+                                </div>
+                                <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
+                                <form action="#">
+                                    <input type="text" class="email-input" placeholder="Your email">
+                                    <label for="s-agree-check">
+                                        I agree to the terms & conditions
+                                        <input type="checkbox" id="s-agree-check">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <button type="submit" class="site-btn">Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+{% endblock content %}

@@ -1,0 +1,8 @@
+{% load social_tags cache %}
+{% cache 5000 social_links %}
+    {% for link in contact_links %}
+        <br>
+        <img style="max-height:20px;" src="{{ link.icon.url }}">
+        {{ link.name|urlize }}
+    {% endfor %}
+{% endcache %}

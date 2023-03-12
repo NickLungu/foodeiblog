@@ -1,0 +1,7 @@
+{% load social_tags cache %}
+{% cache 5000 contact_links_only_url %}
+    {% for link in contact_links_only_url %}
+        <br>
+        {{ link.name|urlize }}
+    {% endfor %}
+{% endcache %}
